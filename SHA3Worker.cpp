@@ -34,6 +34,8 @@ static void permute(uint64_t p[5][5]) {
             c2[j] = rotl<1>(c[(j + 1) % 5]) ^ c[(j - 1 + 5) % 5];
         }
 
+        // these loop unrolling method learn from botan
+        // https://github.com/randombit/botan/blob/c4d3b64d2ebaa70c737c359a941301783036ca68/src/lib/hash/sha3/sha3.cpp
         const uint64_t B00 = p[0][0] ^c2[0];
         const uint64_t B20 = rotl<1>(p[0][1] ^ c2[1]);
         const uint64_t B40 = rotl<62>(p[0][2] ^ c2[2]);
